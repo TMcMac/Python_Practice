@@ -41,7 +41,7 @@ Part 2: Pull up to the three most recent tweets from @LXAI and like them
 Part 3: Pull up to the three most recent tweets from @LXAI and rewteet them
 '''
 while True:
-    search = '#ethicalai OR #aiethics OR #aiforsocialgood OR #ai4good OR #responsibleai OR #futureofwork OR #aijustice OR #dataforgood OR #data4good OR #aiforsocialimpact'
+    search = '#ethicalai OR #aiethics OR #aiforsocialgood OR #ai4good OR #responsibleai OR #aijustice OR #dataforgood OR #data4good OR #aiforsocialimpact OR #futureofwork AND #AI'
     i = 0
     j = 0
     for tweet in tweepy.Cursor(api.search, search).items():
@@ -50,7 +50,7 @@ while True:
             i += 1
             print("Key hashtag tweet liked! Count: {}".format(i))
             time.sleep(3)
-            if i > 25:
+            if i >= 25:
                 break
         except tweepy.TweepError as e:
             print(e.reason)
@@ -62,7 +62,7 @@ while True:
                 time.sleep(960)
         except StopIteration:
             break
-    alt_account1 = "LXAI"
+    alt_account1 = "_LXAI"
     i = 0
     j = 0
     for tweet in tweepy.Cursor(api.user_timeline, screen_name=alt_account1).items(5):
@@ -70,12 +70,12 @@ while True:
             tweet.favorite()
             i += 1
             print("{} tweet liked! Count: {}".format(alt_account1, i))
-            if i > 5:
+            if i >= 5:
                 break
         except tweepy.TweepError as e:
             print(e.reason)
             j += 1
-            if j > 10:
+            if j >= 5:
                 break
         except StopIteration:
             break
